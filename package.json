@@ -1,0 +1,24 @@
+{
+  "name": "pennypost",
+  "version": "1.0.0",
+  "description": "instagram postcard app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nathanmaas/pennypost.git"
+  },
+  "keywords": [
+    "instagram",
+    "lob",
+    "postcard"
+  ],
+  "author": "nathan maas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nathanmaas/pennypost/issues"
+  },
+  "homepage": "https://github.com/Nathanmaas/pennypost#readme"
+}
