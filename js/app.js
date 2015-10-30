@@ -13,5 +13,9 @@ pennyPost.config(['$routeProvider','$locationProvider',function($routeProvider,$
 		templateUrl:'views/home.html',
 		controller:'HomeCtrl'
 	})
+	.when('/new-postcard',{
+		templateUrl:'views/new-card.html',
+		controller:'NewcardCtrl'
+	})
 
 }]);
