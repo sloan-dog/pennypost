@@ -1,0 +1,12 @@
+#card-constructor{
+	width:60vw;
+	height:35vw;
+	margin:5vh 20vw 0vh 20vw;
+	background-color:rgb(100,100,100);
+}
+#photo-selector{
+	margin:3vh 0vw 0vw 0vw;
+}
+#photo-selector img{
+	width:32vw;
+}
