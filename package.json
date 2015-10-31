@@ -24,6 +24,7 @@
   "dependencies": {
     "angular": "^1.4.7",
     "angular-route": "^1.4.7",
-    "express": "^4.13.3"
+    "express": "^4.13.3",
+    "instagram-node": "^0.5.8"
   }
 }

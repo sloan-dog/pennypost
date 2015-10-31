@@ -1,6 +1,10 @@
-<div id="card-constructor">
+<div id="card-constructor" ng-click="flippin()">
 
 </div>
-<div id="photo-selector">
+
+<div id="photo-selector" ng-hide="photoSet">
 		<img ng-repeat="image in images track by $index" src={{image.url}}>
+</div>
+<div id="message-form" ng-show="photoSet">
+<textarea>yo yo yo yo</textarea>
 </div>
