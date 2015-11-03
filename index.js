@@ -1,12 +1,17 @@
 var express = require('express');
 var app = express();
 var instagram = require('./controllers/instagram');
+var cookieParser = require('cookie-parser');
 
 app.use(express.static(__dirname));
-app.use('/instagram', instagram)
+app.use('/instagram', instagram);
+app.use(cookieParser());
 
 app.get('/',function(req,res){
-	res.render('index.html');
+
+      if(req.cookies.instaToken){
+          res.redirect('/#!/new-postcard');
+      }else{res.render('index.html')}
 });
 
 app.listen(process.env.PORT || 3000)

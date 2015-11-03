@@ -1,10 +1,11 @@
-pennyPost.controller('NewcardCtrl',function($scope){
+pennyPost.controller('NewcardCtrl',function($scope,$http){
 	$scope.hello = "heeeeeyyyyyy";
-	$scope.images = [{url:'http://www.bioexpedition.com/wp-content/uploads/2012/04/Racoon-Cub.jpg'},
-		{url:'http://www.bioexpedition.com/wp-content/uploads/2012/04/Racoon-Cub.jpg'},
-		{url:'http://www.bioexpedition.com/wp-content/uploads/2012/04/Racoon-Cub.jpg'},
-		{url:'http://www.bioexpedition.com/wp-content/uploads/2012/04/Racoon-Cub.jpg'},
-		{url:'http://www.bioexpedition.com/wp-content/uploads/2012/04/Racoon-Cub.jpg'}];
+	$http({
+    url:'/instagram/photos'
+  }).then(function(data){
+    console.log(data)
+    $scope.images = data.data;
+  })
   $scope.photoSet = false;
   $scope.flippin = function(){
     console.log('heeeeeyyyyyy');
