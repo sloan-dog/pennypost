@@ -17,11 +17,7 @@ router.get('/authorize-user', function (req, res){
   client_id: process.env.instagram_client_id,
   client_secret: process.env.instagram_client_secret
 });
-  if (req.cookies.instaToken){
-    res.redirect('/#!/new-postcard');
-  }else{
       res.redirect(instaApi.get_authorization_url(redirect_uri));
-  }
 });
 
 router.get('/handleauth', function (req, res){

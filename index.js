@@ -11,7 +11,7 @@ app.get('/',function(req,res){
 
       if(req.cookies.instaToken){
           res.redirect('/#!/new-postcard');
-      }else{res.render('index.html')}
+      }else{res.redirect('/#!/')}
 });
 
 app.listen(process.env.PORT || 3000)
