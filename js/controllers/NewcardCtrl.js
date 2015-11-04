@@ -10,6 +10,11 @@ pennyPost.controller('NewcardCtrl',function($scope,$http){
   $scope.flippin = function(){
     console.log('heeeeeyyyyyy');
     $scope.photoSet = !$scope.photoSet;
-  }
+  };
+  $scope.selectedImages = [];
+  $scope.addImage = function(image){
+  	console.log('heeey')
+  	$scope.selectedImages.push(image);
+  };
 });
 
