@@ -3,7 +3,7 @@ pennyPost.directive('postcard',function(){
 		restrict:'E',
 		templateUrl:'views/partials/postcard.html',
 		scope:{
-			images:'='
+			images:'=',
 		}
 	}
 })

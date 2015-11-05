@@ -13,8 +13,12 @@ pennyPost.controller('NewcardCtrl',function($scope,$http){
   };
   $scope.selectedImages = [];
   $scope.addImage = function(image){
-  	console.log('heeey')
-  	$scope.selectedImages.push(image);
+    if($scope.selectedImages.length < 4){
+      $scope.selectedImages.push(image);
+    }else{
+      alert('fuck you');
+    };
+
   };
 });
 

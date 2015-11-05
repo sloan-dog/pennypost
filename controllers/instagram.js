@@ -5,12 +5,7 @@ var cookieParser = require('cookie-parser');
 
 router.use(cookieParser());
 
-
-
-
 var redirect_uri = 'http://localhost:3000/instagram/handleauth';
-
-
 
 router.get('/authorize-user', function (req, res){
   instaApi.use({
