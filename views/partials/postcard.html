@@ -1,15 +1,12 @@
 <style>
 #card-constructor{
-  width:60vw;
-  height:35vw;
+  width:5.875in;
+  height:3.875in;
   margin:5vh 20vw 0vh 20vw;
   background-color:rgb(100,100,100);
   overflow: hidden;
 }
-#card-constructor img{
-  width: {{images.length > 1 ? '50%': '100%'}};
-};
-
+{{style}}
 </style>
 <div id="card-constructor">
 <img ng-repeat="image in images" src={{image}}>

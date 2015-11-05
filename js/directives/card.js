@@ -4,6 +4,7 @@ pennyPost.directive('postcard',function(){
 		templateUrl:'views/partials/postcard.html',
 		scope:{
 			images:'=',
+			style:'='
 		}
 	}
 })
