@@ -7,6 +7,7 @@
 <div id="photo-selector" ng-hide="photoSet">
 		<img ng-repeat="image in images track by $index" ng-click="addImage(image.images.standard_resolution.url)" src={{image.images.standard_resolution.url}}>
 </div>
+
 <div id="message-form" ng-show="photoSet">
 <textarea>Hide Them Pics - Click Here</textarea>
 </div>

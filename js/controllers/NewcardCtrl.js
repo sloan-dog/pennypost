@@ -27,6 +27,7 @@ pennyPost.controller('NewcardCtrl',function($scope,$http){
     } else {
       $scope.displayMode = '';
     }
+    // console.log($scope.displayMode)
   });
 
   var timmy = document.getElementsByTagName('postcard')[0];
