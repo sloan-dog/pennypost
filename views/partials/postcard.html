@@ -2,16 +2,17 @@
 #card-constructor{
   width:5.875in;
   height:3.875in;
-  margin:5vh 20vw 0vh 20vw;
-  background-color:rgb(100,100,100);
+  margin: 3vh auto;
+  background-color:rgb(#ffffff);
   overflow: hidden;
+  box-shadow: 0px 0px 10px 0px #777;
 }
 {{style}}
-
+/*{{displayMode}}*/
 </style>
 <div id="card-constructor">
-<!-- <h1 ng-att>{{displayMode}}</h1> -->
-<img ng-repeat="image in images" src={{image}}>
+<!-- <h1>{{displayMode}}</h1> -->
+<img ng-repeat="image in images track by $index" src={{image}}>
 </div>
 
 
