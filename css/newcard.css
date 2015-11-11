@@ -1,9 +1,9 @@
 
 #photo-selector {
-	margin:3vh 0vw 0vw 0vw;
+	margin:5vh 0vw 0vw 0vw;
 }
 #photo-selector img {
-	width:19.8vw;
+	width:280px;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
