@@ -105,11 +105,10 @@ function throttle(fn, threshhold, scope) {
     console.log(interval);
     // debugger;
     var lastPhoto = document.getElementById('photo-selector').lastChild
-    console.log(lastPhoto);
+    // console.log(lastPhoto);
     var scrollThresh = 2000;
     if (body.scrollTop > interval + scrollThresh + postCard.rect.height) {
       console.log('you are scrolled');
-      getImages();
       interval = Math.max(
         body.scrollHeight,
         body.offsetHeight,
@@ -117,6 +116,8 @@ function throttle(fn, threshhold, scope) {
         html.scrollHeight,
         html.offsetHeight
       );
+      console.log('interval:',interval,'postcardHeight:',postCard.rect.height,'scrollThresh:',scrollThresh);
+      getImages();
     } else {
       console.log('scroll trigger');
     }
