@@ -5,6 +5,7 @@
 
 	<link rel="stylesheet" href="css/home-style.css"></link>
 	<link rel="stylesheet" href="css/newcard.css"></link>
+	<link rel="stylesheet" href="css/sidenav.css"></link>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
 	<script src="node_modules/angular/angular.js"></script>
@@ -15,10 +16,22 @@
 	<script src="js/directives/card.js"></script>
 	<script src="js/controllers/HomeCtrl.js"></script>
 	<script src="js/controllers/NewcardCtrl.js"></script>
+	<script src="js/controllers/SidenavCtrl.js"></script>
 
 
 </head>
 <body ng-app="PennyPost">
+	<div ng-controller="SidenavCtrl" id="sidenav-div">
+		<span class="glyphicon glyphicon-menu-hamburger" ng-click="navToggle()" id="menu-icon"></span>
+		<div id="sidenav">
+			<ul class="menu">
+			<li><span class="glyphicon glyphicon-arrow-left" ng-click="navToggle()"></span></li>
+			<li>New Card</li>
+			<li>Past Cards</li>
+			<li>Contacts</li>
+		</ul>
+		</div>
+	</div>
 	<ng-view></ng-view>
 	<script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
