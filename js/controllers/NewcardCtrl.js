@@ -43,16 +43,16 @@ pennyPost.controller('NewcardCtrl',function($scope,$http){
       if($scope.selectedImages.length === 1){
       	$scope.style = "#card-constructor img{width:100%;}"
       }else if($scope.selectedImages.length === 2){
-      	$scope.style = "#card-constructor img{width:48%;margin-top:9%;}"
+      	$scope.style = "#card-constructor img{width:48%;margin-top:9%;border: 5px solid #fff;}"
       }else if($scope.selectedImages.length === 3){
-      	$scope.style = "#card-constructor img:first-child{width:66%;float:left;}"+
-      	"#card-constructor img:nth-child(2){width:34%;float:right;}"+
-      	"#card-constructor img:nth-child(3){width:34%;float:right;border-top:2%}";
+      	$scope.style = "#card-constructor img:first-child{width:66%;float:left;border: 5px solid #fff;}"+
+      	"#card-constructor img:nth-child(2){width:34%;float:right;border: 5px solid #fff;}"+
+      	"#card-constructor img:nth-child(3){width:34%;float:right;border-top:2%;border: 5px solid #fff;}";
       }else if($scope.selectedImages.length === 4){
-    		$scope.style = "#card-constructor img:first-child{width:50%;margin-top:-15%;}"+
-          	"#card-constructor img:nth-child(2){width:50%;margin-top:-15%;}"+
-          	"#card-constructor img:nth-child(3){width:50%;}"+
-          	"#card-constructor img:nth-child(4){width:50%;}";
+    		$scope.style = "#card-constructor img:first-child{width:50%;margin-top:-18%;border: 5px solid #fff;}"+
+          	"#card-constructor img:nth-child(2){width:50%;margin-top:-18%;border: 5px solid #fff;}"+
+          	"#card-constructor img:nth-child(3){width:50%;border: 5px solid #fff;}"+
+          	"#card-constructor img:nth-child(4){width:50%;border: 5px solid #fff;}";
         console.log(document.getElementsByTagName("#card-constructor img"));
       };
     }else{
