@@ -19,7 +19,7 @@ router.get('/handleauth', function (req, res){
   instaApi.authorize_user(req.query.code, redirect_uri, function(err, result){
     if (err) {
       res.send(err.body);
-    } else{
+    } else {
         res.cookie('instaToken',result.access_token, { httpOnly: true });
         instaApi.use({access_token:result.access_token});
         console.log(result);

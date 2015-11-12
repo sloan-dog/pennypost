@@ -1,7 +1,11 @@
 
-#photo-selector{
-	margin:3vh 0vw 0vw 0vw;
+#photo-selector {
+	margin:5vh 0vw 0vw 0vw;
 }
-#photo-selector img{
-	width:32vw;
+#photo-selector img {
+	width:280px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  border: .3vw solid #fff;
 }

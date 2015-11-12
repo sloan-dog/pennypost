@@ -1,0 +1,22 @@
+#sidenav-div{
+	position:fixed;
+	z-index:10;
+}
+#menu-icon{
+	font-size:6vh;
+	float:right;
+}
+#sidenav{
+	width:30vw;
+	height:100vh;
+	position:fixed;
+	background-color:rgba(50,50,50,.9);
+}
+#sidenav ul{
+	color:white;
+	list-style-type: none;
+}
+#sidenav li{
+	border-bottom:2px solid white;
+	padding:15px 0px 15px 0px;
+}
