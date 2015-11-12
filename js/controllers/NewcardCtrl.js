@@ -31,7 +31,7 @@ pennyPost.controller('NewcardCtrl',function($scope,$http){
       	"#card-constructor img:nth-child(4){width:50%;}";
       };
     }else{
-      alert('fuck you');
+      alert('Only 4 photos allowed!');
     };
 
   };
