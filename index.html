@@ -23,9 +23,9 @@
 <body ng-app="PennyPost">
 	<div ng-controller="SidenavCtrl" id="sidenav-div">
 		<span class="glyphicon glyphicon-menu-hamburger" ng-click="navToggle()" id="menu-icon"></span>
-		<div id="sidenav">
+		<div id="sidenav" ng-show="navOpen">
 			<ul class="menu">
-			<li><span class="glyphicon glyphicon-arrow-left" ng-click="navToggle()"></span></li>
+			<li ng-click="navToggle()"><span class="glyphicon glyphicon-arrow-left"></span></li>
 			<li>New Card</li>
 			<li>Past Cards</li>
 			<li>Contacts</li>

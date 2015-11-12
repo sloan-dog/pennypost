@@ -1,5 +1,6 @@
 pennyPost.controller('SidenavCtrl', function($scope){
+	$scope.navOpen = false;
 	$scope.navToggle = function(){
-		alert(';lajf;laj')
+		$scope.navOpen = !$scope.navOpen;
 	}
 });
