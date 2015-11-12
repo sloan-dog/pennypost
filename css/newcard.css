@@ -9,3 +9,8 @@
   -webkit-box-sizing: border-box;
   border: .3vw solid #fff;
 }
+
+.scroll-spacer {
+    width:100vw;
+    height:300px;
+}

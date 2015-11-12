@@ -3,6 +3,8 @@ var router = express.Router();
 var instaApi = require('instagram-node').instagram();
 var cookieParser = require('cookie-parser');
 
+var page = 0;
+
 router.use(cookieParser());
 
 var redirect_uri = 'http://localhost:3000/instagram/handleauth';
@@ -35,16 +37,29 @@ router.get('/logout', function(req, res) {
   res.redirect('/');
 });
 
-router.get('/photos', function (req, res){
-  instaApi.user_self_media_recent(function(err,medias,pagination,remaining,limit){
-    if(err){
-      res.send(err)
-    }else{
-    console.log(medias)
-      res.send(medias);
-    }
-  })
+// Set nextPage variable to undefined to indicate we need to send medias
+var nextPage = null;
 
+router.get('/photos', function (req, res){
+  var hdl = function(err, medias, pagination, remaining, limit) {
+
+    if(err) {
+      res.send(err)
+    } else if (!nextPage) {
+      res.send(medias);
+      // prepare nextPage for loading next set of images
+      nextPage = pagination;
+    } else {
+      nextPage.next(hdl);
+      // let the server know were sending medias
+      nextPage = null;
+    }
+  };
+
+  instaApi.user_self_media_recent(hdl);
 })
+
+
+
 
 module.exports = router;

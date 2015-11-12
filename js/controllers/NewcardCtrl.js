@@ -1,11 +1,22 @@
 pennyPost.controller('NewcardCtrl',function($scope,$http){
 	$scope.hello = "heeeeeyyyyyy";
-	$http({
-    url:'/instagram/photos'
-  }).then(function(data){
-    console.log(data)
-    $scope.images = data.data;
-  })
+  $scope.images = [];
+	var getImages = function(){
+    var theseImages;
+    $http({
+      url:'/instagram/photos'
+    }).then(function(data){
+      console.log(data)
+      theseImages = data.data;
+      theseImages.forEach(function(image) {
+        $scope.images.push(image);
+      })
+      // take each object in the data.data array and push it
+      // $scope.images += data.data;
+    })
+  }
+
+  getImages();
   $scope.photoSet = false;
   $scope.flippin = function(){
     console.log('heeeeeyyyyyy');
@@ -17,18 +28,7 @@ pennyPost.controller('NewcardCtrl',function($scope,$http){
 
   $scope.displayMode = '';
 
-  var body = document.body;
-  console.log(body);
-  window.addEventListener('scroll',function(){
-    console.log('you be scrolling',body.scrollTop);
-    // if (doc.scrollTop())
-    if (body.scrollTop > 200) {
-      $scope.displayMode = "#card-constructor {position:fixed;transform:scale(0.5);}"
-    } else {
-      $scope.displayMode = '';
-    }
-    // console.log($scope.displayMode)
-  });
+
 
   var timmy = document.getElementsByTagName('postcard')[0];
   timmy.addEventListener('click',function(){
@@ -65,7 +65,77 @@ pennyPost.controller('NewcardCtrl',function($scope,$http){
     $scope.selectedImages = [];
   }
 
+
+
+// This function throttle's function calls while listening for scroll events
+// ***********************************************
+function throttle(fn, threshhold, scope) {
+  threshhold || (threshhold = 250);
+  var last,
+      deferTimer;
+  return function () {
+    var context = scope || this;
+
+    var now = +new Date,
+        args = arguments;
+    if (last && now < last + threshhold) {
+      // hold on to it
+      clearTimeout(deferTimer);
+      deferTimer = setTimeout(function () {
+        last = now;
+        fn.apply(context, args);
+      }, threshhold);
+    } else {
+      last = now;
+      fn.apply(context, args);
+    }
+  };
+}
+
+
+    var body = document.body,
+    html = document.documentElement;
+
+  var interval = null;
+  var postCard = document.querySelectorAll('div.row.center')[0];
+  console.log(postCard)
+  postCard.rect = postCard.getBoundingClientRect();
+
+  window.addEventListener('scroll',throttle(function (event) {
+    console.log(interval);
+    // debugger;
+    var lastPhoto = document.getElementById('photo-selector').lastChild
+    console.log(lastPhoto);
+    var scrollThresh = 2000;
+    if (body.scrollTop > interval + scrollThresh + postCard.rect.height) {
+      console.log('you are scrolled');
+      getImages();
+      interval = Math.max(
+        body.scrollHeight,
+        body.offsetHeight,
+        html.clientHeight,
+        html.scrollHeight,
+        html.offsetHeight
+      );
+    } else {
+      console.log('scroll trigger');
+    }
+  },600))
+
+  // var body = document.body;
+  // console.log(body);
+  // window.addEventListener('scroll',function(){
+  //   console.log('you be scrolling',body.scrollTop);
+  //   // if (doc.scrollTop())
+  //   if (body.scrollTop > 200) {
+  //     $scope.displayMode = "#card-constructor {position:fixed;transform:scale(0.5);}"
+  //   } else {
+  //     $scope.displayMode = '';
+  //   }
+  //   // console.log($scope.displayMode)
+  // });
+
+
+
 // end of controller
 });
-
-
