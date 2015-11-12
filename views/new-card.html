@@ -4,9 +4,10 @@
     <postcard class="center card-constructor" images="selectedImages" style="style">
     </postcard>
   </div>
-
-  <button class="btn btn-warning pull-left" ng-click="clearPostcard()">Clear Postcard</button>
-  <a href="/instagram/logout"><button class="btn btn-success pull-right">Logout Insta</button></a>
+  <div class="row">
+    <button class="btn btn-warning pull-left" ng-click="clearPostcard()">Clear Postcard</button>
+    <a href="/instagram/logout"><button class="btn btn-success pull-right">Logout Insta</button></a>
+  </div>
 
   <!-- photos from Instagram -->
   <div id="photo-selector" ng-hide="photoSet">
