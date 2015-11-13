@@ -30,11 +30,11 @@ pennyPost.controller('NewcardCtrl',function($scope,$http){
 
 
 
-  var timmy = document.getElementsByTagName('postcard')[0];
-  timmy.addEventListener('click',function(){
-    console.log(timmy.innerHTML);
-  })
-  console.log(timmy);
+  // var timmy = document.getElementsByTagName('postcard')[0];
+  // timmy.addEventListener('click',function(){
+  //   console.log(timmy.innerHTML);
+  // })
+  // console.log(timmy);
 
 
   $scope.addImage = function(image){
