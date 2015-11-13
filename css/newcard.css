@@ -11,6 +11,22 @@
 }
 
 .scroll-spacer {
-    width:100vw;
+    width:50%;
     height:300px;
+    background-color: blue;
+}
+
+.spinning {
+    animation-name: loadingSpin;
+    animation-duration: 4000ems;
+    animation-iteration-count: infinite;
+}
+
+@keyframes loadingSpin {
+    from: {
+        transform:rotate(0deg);
+    }
+    to: {
+        transform:rotate(360deg);
+    }
 }

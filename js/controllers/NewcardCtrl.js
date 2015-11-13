@@ -1,7 +1,10 @@
 pennyPost.controller('NewcardCtrl',function($scope,$http){
-	$scope.hello = "heeeeeyyyyyy";
+
+
+
+  $scope.hello = "heeeeeyyyyyy";
   $scope.images = [];
-	var getImages = function(){
+  var getImages = function(){
     var theseImages;
     $http({
       url:'/instagram/photos'
@@ -41,18 +44,18 @@ pennyPost.controller('NewcardCtrl',function($scope,$http){
     if($scope.selectedImages.length < 4 && $scope.selectedImages.indexOf(image) === -1){
       $scope.selectedImages.push(image);
       if($scope.selectedImages.length === 1){
-      	$scope.style = "#card-constructor img{width:100%;}"
+        $scope.style = "#card-constructor img{width:100%;}"
       }else if($scope.selectedImages.length === 2){
-      	$scope.style = "#card-constructor img{width:48%;margin-top:9%;border: 5px solid #fff;}"
+        $scope.style = "#card-constructor img{width:48%;margin-top:9%;border: 5px solid #fff;}"
       }else if($scope.selectedImages.length === 3){
-      	$scope.style = "#card-constructor img:first-child{width:66%;float:left;border: 5px solid #fff;}"+
-      	"#card-constructor img:nth-child(2){width:34%;float:right;border: 5px solid #fff;}"+
-      	"#card-constructor img:nth-child(3){width:34%;float:right;border-top:2%;border: 5px solid #fff;}";
+        $scope.style = "#card-constructor img:first-child{width:66%;float:left;border: 5px solid #fff;}"+
+        "#card-constructor img:nth-child(2){width:34%;float:right;border: 5px solid #fff;}"+
+        "#card-constructor img:nth-child(3){width:34%;float:right;border-top:2%;border: 5px solid #fff;}";
       }else if($scope.selectedImages.length === 4){
-    		$scope.style = "#card-constructor img:first-child{width:50%;margin-top:-18%;border: 5px solid #fff;}"+
-          	"#card-constructor img:nth-child(2){width:50%;margin-top:-18%;border: 5px solid #fff;}"+
-          	"#card-constructor img:nth-child(3){width:50%;border: 5px solid #fff;}"+
-          	"#card-constructor img:nth-child(4){width:50%;border: 5px solid #fff;}";
+        $scope.style = "#card-constructor img:first-child{width:50%;margin-top:-18%;border: 5px solid #fff;}"+
+            "#card-constructor img:nth-child(2){width:50%;margin-top:-18%;border: 5px solid #fff;}"+
+            "#card-constructor img:nth-child(3){width:50%;border: 5px solid #fff;}"+
+            "#card-constructor img:nth-child(4){width:50%;border: 5px solid #fff;}";
         console.log(document.getElementsByTagName("#card-constructor img"));
       };
     }else{
@@ -67,8 +70,17 @@ pennyPost.controller('NewcardCtrl',function($scope,$http){
 
 
 
-// This function throttle's function calls while listening for scroll events
 // ***********************************************
+// SCROLLING RESIZE SECTION
+// *********************************************
+
+// initialize scroll/resize variables
+    var windowHeight = window.innerHeight;
+    var lastPhoto = document.getElementsByClassName('scroll-spacer')[0];
+  //
+
+
+// This function throttle's function calls while listening for events
 function throttle(fn, threshhold, scope) {
   threshhold || (threshhold = 250);
   var last,
@@ -93,34 +105,38 @@ function throttle(fn, threshhold, scope) {
 }
 
 
-    var body = document.body,
-    html = document.documentElement;
+  var body = document.body,
+      html = document.documentElement;
 
-  var interval = null;
+  var scrollOffset = 100;
   var postCard = document.querySelectorAll('div.row.center')[0];
-  console.log(postCard)
-  postCard.rect = postCard.getBoundingClientRect();
+  // console.log(postCard)
+  // postCard.rect = postCard.getBoundingClientRect();
 
+  // get the current window size and retrieve the position and bounds of the scroll spacer
+  var getCurrentPos = function() {
+    windowHeight = window.innerHeight;
+    lastPhoto = document.getElementsByClassName('scroll-spacer')[0];
+    lastPhoto.rect = lastPhoto.getBoundingClientRect();
+  }
+
+
+// listen for page scrolling
   window.addEventListener('scroll',throttle(function (event) {
-    console.log(interval);
-    // debugger;
-    var lastPhoto = document.getElementById('photo-selector').lastChild
-    console.log(lastPhoto);
-    var scrollThresh = 2000;
-    if (body.scrollTop > interval + scrollThresh + postCard.rect.height) {
-      console.log('you are scrolled');
+
+    var state = false;
+
+    getCurrentPos();
+    if (window.innerHeight + scrollOffset > lastPhoto.rect.height + lastPhoto.rect.top) {
       getImages();
-      interval = Math.max(
-        body.scrollHeight,
-        body.offsetHeight,
-        html.clientHeight,
-        html.scrollHeight,
-        html.offsetHeight
-      );
+      loadingSpin();
+      state = true;
     } else {
+      loadingSpin();
       console.log('scroll trigger');
     }
   },600))
+
 
   // var body = document.body;
   // console.log(body);
