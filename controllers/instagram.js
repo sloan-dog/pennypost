@@ -51,7 +51,7 @@ router.get('/photos', function (req, res){
       nextPage = pagination;
     } else {
       nextPage.next(hdl);
-      // let the server know were sending medias
+      // let the server know we're sending medias
       nextPage = null;
     }
   };
