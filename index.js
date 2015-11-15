@@ -1,11 +1,15 @@
 var express = require('express');
 var app = express();
 var instagram = require('./controllers/instagram');
+var lob = require('./controllers/lob');
 var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
 
 app.use(express.static(__dirname));
 app.use('/instagram', instagram);
+app.use('/lob', lob);
 app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/',function(req,res){
 
