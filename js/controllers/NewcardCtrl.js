@@ -1,4 +1,4 @@
-pennyPost.controller('NewcardCtrl',function($scope,$http){
+pennyPost.controller('NewcardCtrl',function($scope,$http,$httpParamSerializerJQLike){
 
 
 
@@ -85,6 +85,19 @@ pennyPost.controller('NewcardCtrl',function($scope,$http){
 
   $scope.clearPostcard = function() {
     $scope.selectedImages = [];
+  }
+
+  $scope.sendPostcard = function(){
+    $http({
+      method:'POST',
+      url:'/lob/sendcard',
+      headers:{
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      data:$httpParamSerializerJQLike({test:$scope.selectedImages})
+    }).then(function(res){
+      console.log(res)
+    });
   }
 
 
