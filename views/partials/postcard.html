@@ -13,7 +13,7 @@
 </style>
 <div id="card-constructor">
 <!-- <h1>{{displayMode}}</h1> -->
-<img draggable ng-repeat="image in images track by $index" src={{image}}>
+<img draggable ng-repeat="image in selectedImages track by $index" src={{image}} ng-click="removeImg($index)">
 </div>
 
 
