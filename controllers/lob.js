@@ -8,9 +8,8 @@ router.use(cookieParser());
 router.use(bodyParser.urlencoded({ extended: false }));
 
 router.post('/sendcard',function(req,res){
-  var images = req.body.test;
   console.log(req.body)
-  res.send(images);
+  res.send(req.body.front);
 });
 
 module.exports = router;
