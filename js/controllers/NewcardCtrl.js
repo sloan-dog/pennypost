@@ -88,13 +88,15 @@ pennyPost.controller('NewcardCtrl',function($scope,$http,$httpParamSerializerJQL
   }
 
   $scope.sendPostcard = function(){
+    var postcardHtml = document.querySelector('postcard').HTML;
+    var front = "<html><head></head><body>"+postcardHtml+"</body></html>"
     $http({
       method:'POST',
       url:'/lob/sendcard',
       headers:{
         'Content-Type': 'application/x-www-form-urlencoded'
       },
-      data:$httpParamSerializerJQLike({test:$scope.selectedImages})
+      data:$httpParamSerializerJQLike({front:front})
     }).then(function(res){
       console.log(res)
     });
