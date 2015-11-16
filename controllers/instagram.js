@@ -10,6 +10,7 @@ router.use(cookieParser());
 var redirect_uri = 'http://localhost:3000/instagram/handleauth';
 
 router.get('/authorize-user', function (req, res){
+  // nextPage = null;
   instaApi.use({
   client_id: process.env.instagram_client_id,
   client_secret: process.env.instagram_client_secret
@@ -18,6 +19,7 @@ router.get('/authorize-user', function (req, res){
 });
 
 router.get('/handleauth', function (req, res){
+  // nextPage = null;
   instaApi.authorize_user(req.query.code, redirect_uri, function(err, result){
     if (err) {
       res.send(err.body);
@@ -31,18 +33,24 @@ router.get('/handleauth', function (req, res){
 });
 
 router.get('/logout', function(req, res) {
+  // nextPage = null;
   res.cookie('instaToken', null, { maxAge: 1, httpOnly: true });
   // instaApi.use({access_token: null,});
   // instaApi.use({access_token: access_token});
   res.redirect('/');
 });
 
+
 // Set nextPage variable to undefined to indicate we need to send medias
 var nextPage = null;
 
 router.get('/photos', function (req, res){
   var hdl = function(err, medias, pagination, remaining, limit) {
-
+    // to account for local url description in router vs external add instagram to comparison
+    // if (req.originalUrl != '/instagram' + req.url) {
+    //   console.log(req.originalUrl,req.url);
+      // nextPage = null;
+    // }
     if(err) {
       res.send(err)
     } else if (!nextPage) {
@@ -50,11 +58,14 @@ router.get('/photos', function (req, res){
       // prepare nextPage for loading next set of images
       nextPage = pagination;
     } else {
-      nextPage.next(hdl);
-      // let the server know were sending medias
-      nextPage = null;
+      if (nextPage && nextPage.next) {
+        // console.log('this is running',pagination.next)
+        nextPage.next(hdl);
+        nextPage = null;
+      }
     }
   };
+
 
   instaApi.user_self_media_recent(hdl);
 })

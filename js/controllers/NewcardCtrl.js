@@ -14,6 +14,7 @@ pennyPost.controller('NewcardCtrl',function($scope,$http){
       theseImages.forEach(function(image) {
         $scope.images.push(image);
       })
+      console.log($scope.images);
       // take each object in the data.data array and push it
       // $scope.images += data.data;
     })
