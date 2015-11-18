@@ -46,11 +46,11 @@ pennyPost.controller('NewcardCtrl',function($scope,$http,$httpParamSerializerJQL
       if($scope.selectedImages.length === 1){
         $scope.style = "#img0{width:100%;}"
       }else if($scope.selectedImages.length === 2){
-        $scope.style = "#img0,#img1{width:48%;margin-top:9%;border: 5px solid #fff;}"
+        $scope.style = "#img0,#img1{width:48%;top:12%;border: 5px solid #fff;}"
       }else if($scope.selectedImages.length === 3){
-        $scope.style = "#img0{width:65%;float:left;border: 3px solid #fff;}"+
-        "#img1{width:33%;float:right;border: 3px solid #fff;}"+
-        "#img2{width:33%;float:right;border-top:2%;border: 3px solid #fff;}";
+        $scope.style = "#img0{position:relative;float:left;width:65%;top:0%;left:0%;border:3px solid #fff;}"+
+        "#img1{position:relative;width:32%;top:0%;left:0%;border:3px solid #fff;}"+
+        "#img2{position:relative;width:32%;margin-top:1%;top:0%;left:0%;border-top:2%;border:3px solid #fff;}";
       }else if($scope.selectedImages.length === 4){
         $scope.style = "#img0{width:50%;margin-top:-18%;border: 5px solid #fff;}"+
             "#img1{width:50%;margin-top:-18%;border: 5px solid #fff;}"+
