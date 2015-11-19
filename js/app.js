@@ -1,4 +1,4 @@
-var pennyPost = angular.module('PennyPost',['ngRoute','ngAnimate']);
+var pennyPost = angular.module('PennyPost',['ngRoute']);
 
 pennyPost.run(function(){
 	console.log('hey!')

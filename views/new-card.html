@@ -11,8 +11,10 @@
   </div>
 
   <!-- copy of postcard to show on selection of images -->
-  <postcard ng-cloak class="fadein postcard-copy center card-constructor ng-cloak" ng-show="showCardCopy" ng-hide="!showCardCopy">
+  <span class='scroll-debug' scroll-position="scroll">{{scroll}}</span>
+  <postcard ng-class="{'card-preview': scroll > 400}" class="postcard-copy center card-constructor">
   </postcard>
+
   <!-- photos from Instagram -->
   <div id="photo-selector" ng-hide="photoSet">
       <img ng-repeat="image in images track by $index" ng-click="addImage(image.images.standard_resolution.url,$event)" src={{image.images.standard_resolution.url}}>

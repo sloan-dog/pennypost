@@ -1,6 +1,6 @@
 pennyPost.controller('NewcardCtrl',function($scope,$http,$httpParamSerializerJQLike,$window){
 
-
+  $scope.scroll = 0;
 
   $scope.hello = "heeeeeyyyyyy";
   $scope.images = [];
@@ -40,7 +40,7 @@ pennyPost.controller('NewcardCtrl',function($scope,$http,$httpParamSerializerJQL
   // console.log(timmy);
 
 
-  $scope.addImage = function(image,event){
+  $scope.addImage = function(image){
     if($scope.selectedImages.length < 4 && $scope.selectedImages.indexOf(image) === -1){
       $scope.selectedImages.push(image);
       if($scope.selectedImages.length === 1){
@@ -60,16 +60,11 @@ pennyPost.controller('NewcardCtrl',function($scope,$http,$httpParamSerializerJQL
       };
     }else{
       alert('I do apologize, but it appears you have tried to do something impossible.');
-    // show card when scrolling and new photo is selected
     };
-    // event.offsetY
-    console.log('current pos',$window.scrollY)
-    if ($window.scrollY > 300) {
-      console.log('current position more than 600!')
-      $scope.photoSelected = true;
-    }
 
   };
+
+
   //remove added images from the card
   $scope.removeImg = function(idx){
     $scope.selectedImages.splice(idx,1);
@@ -173,10 +168,10 @@ function throttle(fn, threshhold, scope) {
     getCurrentPos();
     if (window.innerHeight + scrollOffset > lastPhoto.rect.height + lastPhoto.rect.top) {
       getImages();
-      loadingSpin();
+      // loadingSpin();
       state = true;
     } else {
-      loadingSpin();
+      // loadingSpin();
       console.log('scroll trigger');
     }
   },600))
