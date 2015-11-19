@@ -11,7 +11,7 @@
   </div>
 
   <!-- copy of postcard to show on selection of images -->
-  <postcard class="fadein center card-constructor" ng-show="photoSelected">
+  <postcard ng-cloak class="fadein postcard-copy center card-constructor ng-cloak" ng-show="showCardCopy" ng-hide="!showCardCopy">
   </postcard>
   <!-- photos from Instagram -->
   <div id="photo-selector" ng-hide="photoSet">

@@ -12,20 +12,36 @@
 
 /* copy of postcard on scroll --> */
 
-.fadein.ng-show {
+[ng:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak {
+  display: none !important;
+}
+.postcard-copy #card-constructor {
+  position: fixed;
+  top: 100px;
+  left: center;
+  background-color: #fff;
+  transition: all linear 500ms;
+}
+
+.postcard-copy.ng-hide  #card-constructor {
   opacity: 0;
 }
 
-.fadein.ng-show-remove,
-.fadein.ng-show-add {
+.ng-hide-remove ,
+.ng-hide-add {
   display: block !important;
 }
 
-.fadein.ng-show-remove {
-  transition: all linear 1000ms;
+.ng-hide-remove {
+  transition: all linear 500ms;
 }
 
-.fadein.ng-show-add {
+.ng-hide-add {
   transition: all linear 500ms;
 }
 
