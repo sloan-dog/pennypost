@@ -1,0 +1,30 @@
+/* copy of postcard on scroll --> */
+
+.scroll-debug {
+  position: fixed;
+  left: 50px;
+  top: 50px;
+  display: none;
+}
+
+.postcard-copy.card-preview #card-constructor {
+  opacity: 1;
+  width: 2.9375in;
+  height: 1.9375in;
+  top: 50px;
+  left: 50px;
+  margin: 0;
+}
+
+.postcard-copy #card-constructor {
+  position: fixed;
+  margin-left: -300px;
+  top: 10px;
+  left: 50%;
+  opacity: 0;
+  background-color: #fff;
+  transition: all linear 500ms;
+}
+
+
+/* <-- copy of postcard on scroll */
