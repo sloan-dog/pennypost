@@ -1,4 +1,4 @@
-pennyPost.controller('NewcardCtrl',function($scope,$http,$httpParamSerializerJQLike){
+pennyPost.controller('NewcardCtrl',function($scope,$http,$httpParamSerializerJQLike,$window){
 
 
 
@@ -40,7 +40,7 @@ pennyPost.controller('NewcardCtrl',function($scope,$http,$httpParamSerializerJQL
   // console.log(timmy);
 
 
-  $scope.addImage = function(image){
+  $scope.addImage = function(image,event){
     if($scope.selectedImages.length < 4 && $scope.selectedImages.indexOf(image) === -1){
       $scope.selectedImages.push(image);
       if($scope.selectedImages.length === 1){
@@ -60,7 +60,14 @@ pennyPost.controller('NewcardCtrl',function($scope,$http,$httpParamSerializerJQL
       };
     }else{
       alert('I do apologize, but it appears you have tried to do something impossible.');
+    // show card when scrolling and new photo is selected
     };
+    // event.offsetY
+    console.log('current pos',$window.scrollY)
+    if ($window.scrollY > 300) {
+      console.log('current position more than 600!')
+      $scope.photoSelected = true;
+    }
 
   };
   //remove added images from the card
@@ -103,6 +110,7 @@ pennyPost.controller('NewcardCtrl',function($scope,$http,$httpParamSerializerJQL
       console.log(res)
     });
   }
+
 
 
 

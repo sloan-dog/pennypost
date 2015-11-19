@@ -10,6 +10,28 @@
   border: .3vw solid #fff;
 }
 
+/* copy of postcard on scroll --> */
+
+.fadein.ng-show {
+  opacity: 0;
+}
+
+.fadein.ng-show-remove,
+.fadein.ng-show-add {
+  display: block !important;
+}
+
+.fadein.ng-show-remove {
+  transition: all linear 1000ms;
+}
+
+.fadein.ng-show-add {
+  transition: all linear 500ms;
+}
+
+/* <-- copy of postcard on scroll */
+
+
 .scroll-spacer {
     width:50%;
     height:300px;
