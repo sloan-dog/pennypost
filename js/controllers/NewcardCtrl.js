@@ -1,9 +1,15 @@
 pennyPost.controller('NewcardCtrl',function($scope,$http,$httpParamSerializerJQLike,$window){
 
   $scope.scroll = 0;
-
   $scope.hello = "heeeeeyyyyyy";
   $scope.images = [];
+  $scope.deleteShow = false;
+  $scope.message = "";
+  $scope.contacts = [];
+  $scope.deletePhoto = null;
+  $scope.cardFrontHtml;
+
+
   var getImages = function(){
     var theseImages;
     $http({
@@ -23,6 +29,9 @@ pennyPost.controller('NewcardCtrl',function($scope,$http,$httpParamSerializerJQL
   $scope.photoSet = false;
   $scope.flippin = function(){
     console.log('heeeeeyyyyyy');
+    if(!$scope.photoSet){
+      $scope.cardFrontHtml = document.querySelector('#card-constructor').innerHTML;
+    }
     $scope.photoSet = !$scope.photoSet;
   };
 
@@ -66,8 +75,9 @@ pennyPost.controller('NewcardCtrl',function($scope,$http,$httpParamSerializerJQL
 
 
   //remove added images from the card
-  $scope.removeImg = function(idx){
-    $scope.selectedImages.splice(idx,1);
+  $scope.removeImg = function(){
+    $scope.selectedImages.splice($scope.deletePhoto,1);
+    $scope.deletePhoto = null;
     if($scope.selectedImages.length === 1){
         $scope.style = "#img0{width:100%;}"
       }else if($scope.selectedImages.length === 2){
@@ -89,9 +99,20 @@ pennyPost.controller('NewcardCtrl',function($scope,$http,$httpParamSerializerJQL
     $scope.selectedImages = [];
   }
 
+  //Delete img functionality
+  $scope.selecOptsToggleOn = function(idx){
+    $scope.deleteShow = true;
+    $scope.deletePhoto = idx;
+  }
+
+  $scope.selecOptsToggleOff = function(idx){
+    $scope.deleteShow = true;
+    $scope.deletePhoto = null;
+  }
+
   $scope.sendPostcard = function(){
-    var postcardHtml = document.querySelector('#card-constructor').innerHTML;
-    var postcardStyle = $scope.style
+    var postcardHtml = $scope.cardFrontHtml;
+    var postcardStyle = $scope.style;
     var front = "<html><head><style>"+postcardStyle+"</style></head><body>"+postcardHtml+"</body></html>"
     console.log(front);
     $http({
