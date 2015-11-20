@@ -1,6 +1,6 @@
-pennyPost.controller('NewcardCtrl',function($scope,$http,$httpParamSerializerJQLike){
+pennyPost.controller('NewcardCtrl',function($scope,$http,$httpParamSerializerJQLike,$window){
 
-
+  $scope.scroll = 0;
 
   $scope.hello = "heeeeeyyyyyy";
   $scope.images = [];
@@ -63,6 +63,8 @@ pennyPost.controller('NewcardCtrl',function($scope,$http,$httpParamSerializerJQL
     };
 
   };
+
+
   //remove added images from the card
   $scope.removeImg = function(idx){
     $scope.selectedImages.splice(idx,1);
@@ -103,6 +105,7 @@ pennyPost.controller('NewcardCtrl',function($scope,$http,$httpParamSerializerJQL
       console.log(res)
     });
   }
+
 
 
 
@@ -165,10 +168,10 @@ function throttle(fn, threshhold, scope) {
     getCurrentPos();
     if (window.innerHeight + scrollOffset > lastPhoto.rect.height + lastPhoto.rect.top) {
       getImages();
-      loadingSpin();
+      // loadingSpin();
       state = true;
     } else {
-      loadingSpin();
+      // loadingSpin();
       console.log('scroll trigger');
     }
   },600))
