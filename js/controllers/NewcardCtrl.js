@@ -78,6 +78,7 @@ pennyPost.controller('NewcardCtrl',function($scope,$http,$httpParamSerializerJQL
   $scope.removeImg = function(){
     $scope.selectedImages.splice($scope.deletePhoto,1);
     $scope.deletePhoto = null;
+    $scope.deleteShow = false;
     if($scope.selectedImages.length === 1){
         $scope.style = "#img0{width:100%;}"
       }else if($scope.selectedImages.length === 2){
@@ -100,14 +101,13 @@ pennyPost.controller('NewcardCtrl',function($scope,$http,$httpParamSerializerJQL
   }
 
   //Delete img functionality
-  $scope.selecOptsToggleOn = function(idx){
-    $scope.deleteShow = true;
-    $scope.deletePhoto = idx;
-  }
-
-  $scope.selecOptsToggleOff = function(idx){
-    $scope.deleteShow = true;
-    $scope.deletePhoto = null;
+  $scope.selecOptsToggle = function(idx){
+    $scope.deleteShow = !$scope.deleteShow;
+    if($scope.deleteShow){
+      $scope.deletePhoto = idx;
+    }else{
+      $scope.deletePhoto = null;
+    }
   }
 
   $scope.sendPostcard = function(){

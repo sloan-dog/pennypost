@@ -20,7 +20,7 @@
 <hr>
 <button class="btn btn-success">Add Recipient</button>
 </div>
-<img draggable ng-hide="photoSet" ng-repeat="image in selectedImages track by $index" src={{image}} id="img{{$index}}" ng-mouseover="selecOptsToggleOn($index)" ng-mouseleave="selecOptsToggleOff()">
+<img draggable ng-hide="photoSet" ng-repeat="image in selectedImages track by $index" src={{image}} id="img{{$index}}" ng-click="selecOptsToggle($index)">
 </div>
 
 
