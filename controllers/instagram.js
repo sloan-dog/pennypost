@@ -54,8 +54,13 @@ router.get('/photos', function (req, res){
     if(err) {
       res.send(err)
     } else {
+
       res.send(medias);
       console.log(pagination,pagination.next,remaining,limit);
+      nextPage.next(hdl);
+      // let the server know we're sending medias
+      nextPage = null;
+
     }
   };
 

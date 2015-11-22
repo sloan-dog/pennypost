@@ -9,6 +9,23 @@
   -webkit-box-sizing: border-box;
   border: .3vw solid #fff;
 }
+#cardFlipIcon{
+  font-size: 6vh;
+  color:rgba(120,120,120,.7);
+}
+#card-constructor textarea{
+  float:left;
+  margin:15px 0px 0px 15px;
+
+  border-top:none;
+  border-right:1px solid rgba(170,170,170,.9);
+  border-left:none;
+  border-bottom:none;
+  resize:none;
+}
+#recipient-div{
+  margin-top: 15px;
+}
 
 .scroll-spacer {
     width:50%;

@@ -1,7 +1,7 @@
 <style>
 #card-constructor{
-  width:5.875in;
-  height:3.875in;
+  width:6.25in;
+  height:4.25in;
   margin: 3vh auto;
   background-color:rgb(#ffffff);
   overflow: hidden;
@@ -13,7 +13,14 @@
 </style>
 <div id="card-constructor">
 <!-- <h1>{{displayMode}}</h1> -->
-<img ng-repeat="image in images track by $index" src={{image}}>
+<textarea ng-model="message" ng-show="photoSet" rows="18" cols="38" placeholder="Enter your message here!"></textarea>
+<tr>
+<div ng-show="photoSet" id="recipient-div">
+<h3>To:</h3>
+<hr>
+<button class="btn btn-success">Add Recipient</button>
+</div>
+<img draggable ng-hide="photoSet" ng-repeat="image in selectedImages track by $index" src={{image}} id="img{{$index}}" ng-click="selecOptsToggle($index)">
 </div>
 
 

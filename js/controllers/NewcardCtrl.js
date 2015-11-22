@@ -1,9 +1,15 @@
-pennyPost.controller('NewcardCtrl',function($scope,$http){
+pennyPost.controller('NewcardCtrl',function($scope,$http,$httpParamSerializerJQLike,$window){
 
-
-
+  $scope.scroll = 0;
   $scope.hello = "heeeeeyyyyyy";
   $scope.images = [];
+  $scope.deleteShow = false;
+  $scope.message = "";
+  $scope.contacts = [];
+  $scope.deletePhoto = null;
+  $scope.cardFrontHtml;
+
+
   var getImages = function(){
     var theseImages;
     $http({
@@ -24,6 +30,9 @@ pennyPost.controller('NewcardCtrl',function($scope,$http){
   $scope.photoSet = false;
   $scope.flippin = function(){
     console.log('heeeeeyyyyyy');
+    if(!$scope.photoSet){
+      $scope.cardFrontHtml = document.querySelector('#card-constructor').innerHTML;
+    }
     $scope.photoSet = !$scope.photoSet;
   };
 
@@ -34,29 +43,29 @@ pennyPost.controller('NewcardCtrl',function($scope,$http){
 
 
 
-  var timmy = document.getElementsByTagName('postcard')[0];
-  timmy.addEventListener('click',function(){
-    console.log(timmy.innerHTML);
-  })
-  console.log(timmy);
+  // var timmy = document.getElementsByTagName('postcard')[0];
+  // timmy.addEventListener('click',function(){
+  //   console.log(timmy.innerHTML);
+  // })
+  // console.log(timmy);
 
 
   $scope.addImage = function(image){
     if($scope.selectedImages.length < 4 && $scope.selectedImages.indexOf(image) === -1){
       $scope.selectedImages.push(image);
       if($scope.selectedImages.length === 1){
-        $scope.style = "#card-constructor img{width:100%;}"
+        $scope.style = "#img0{width:100%;}"
       }else if($scope.selectedImages.length === 2){
-        $scope.style = "#card-constructor img{width:48%;margin-top:9%;border: 5px solid #fff;}"
+        $scope.style = "#img0,#img1{width:48%;top:12%;border: 5px solid #fff;}"
       }else if($scope.selectedImages.length === 3){
-        $scope.style = "#card-constructor img:first-child{width:66%;float:left;border: 5px solid #fff;}"+
-        "#card-constructor img:nth-child(2){width:34%;float:right;border: 5px solid #fff;}"+
-        "#card-constructor img:nth-child(3){width:34%;float:right;border-top:2%;border: 5px solid #fff;}";
+        $scope.style = "#img0{position:relative;float:left;width:65%;top:0%;left:0%;border:3px solid #fff;}"+
+        "#img1{position:relative;width:32%;top:0%;left:0%;border:3px solid #fff;}"+
+        "#img2{position:relative;width:32%;margin-top:1%;top:0%;left:0%;border-top:2%;border:3px solid #fff;}";
       }else if($scope.selectedImages.length === 4){
-        $scope.style = "#card-constructor img:first-child{width:50%;margin-top:-18%;border: 5px solid #fff;}"+
-            "#card-constructor img:nth-child(2){width:50%;margin-top:-18%;border: 5px solid #fff;}"+
-            "#card-constructor img:nth-child(3){width:50%;border: 5px solid #fff;}"+
-            "#card-constructor img:nth-child(4){width:50%;border: 5px solid #fff;}";
+        $scope.style = "#img0{width:50%;margin-top:-18%;border: 5px solid #fff;}"+
+            "#img1{width:50%;margin-top:-18%;border: 5px solid #fff;}"+
+            "#img2{width:50%;border: 5px solid #fff;}"+
+            "#img3{width:50%;border: 5px solid #fff;}";
         console.log(document.getElementsByTagName("#card-constructor img"));
       };
     }else{
@@ -65,9 +74,60 @@ pennyPost.controller('NewcardCtrl',function($scope,$http){
 
   };
 
+
+  //remove added images from the card
+  $scope.removeImg = function(){
+    $scope.selectedImages.splice($scope.deletePhoto,1);
+    $scope.deletePhoto = null;
+    $scope.deleteShow = false;
+    if($scope.selectedImages.length === 1){
+        $scope.style = "#img0{width:100%;}"
+      }else if($scope.selectedImages.length === 2){
+        $scope.style = "#img0,#img1{width:48%;margin-top:9%;border: 5px solid #fff;}"
+      }else if($scope.selectedImages.length === 3){
+        $scope.style = "#img0{width:65%;float:left;border: 3px solid #fff;}"+
+        "#img1{width:33%;float:right;border: 3px solid #fff;}"+
+        "#img2{width:33%;float:right;border-top:2%;border: 3px solid #fff;}";
+      }else if($scope.selectedImages.length === 4){
+        $scope.style = "#img0{width:50%;margin-top:-18%;border: 5px solid #fff;}"+
+            "#img1{width:50%;margin-top:-18%;border: 5px solid #fff;}"+
+            "#img2{width:50%;border: 5px solid #fff;}"+
+            "#img3{width:50%;border: 5px solid #fff;}";
+        console.log(document.getElementsByTagName("#card-constructor img"));
+      };
+  }
+
   $scope.clearPostcard = function() {
     $scope.selectedImages = [];
   }
+
+  //Delete img functionality
+  $scope.selecOptsToggle = function(idx){
+    $scope.deleteShow = !$scope.deleteShow;
+    if($scope.deleteShow){
+      $scope.deletePhoto = idx;
+    }else{
+      $scope.deletePhoto = null;
+    }
+  }
+
+  $scope.sendPostcard = function(){
+    var postcardHtml = $scope.cardFrontHtml;
+    var postcardStyle = $scope.style;
+    var front = "<html><head><style>"+postcardStyle+"</style></head><body>"+postcardHtml+"</body></html>"
+    console.log(front);
+    $http({
+      method:'POST',
+      url:'/lob/sendcard',
+      headers:{
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      data:$httpParamSerializerJQLike({front:front})
+    }).then(function(res){
+      console.log(res)
+    });
+  }
+
 
 
 
@@ -130,10 +190,10 @@ function throttle(fn, threshhold, scope) {
     getCurrentPos();
     if (window.innerHeight + scrollOffset > lastPhoto.rect.height + lastPhoto.rect.top) {
       getImages();
-      loadingSpin();
+      // loadingSpin();
       state = true;
     } else {
-      loadingSpin();
+      // loadingSpin();
       console.log('scroll trigger');
     }
   },600))

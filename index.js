@@ -1,8 +1,10 @@
 var express = require('express');
 var app = express();
 var instagram = require('./controllers/instagram');
+var lob = require('./controllers/lob');
 var cookieParser = require('cookie-parser');
 var url0,url1,idx = 0;
+var bodyParser = require('body-parser');
 
 app.use(express.static(__dirname));
 app.use(function(req,res,next) {
@@ -11,7 +13,9 @@ app.use(function(req,res,next) {
   next();
 })
 app.use('/instagram', instagram);
+app.use('/lob', lob);
 app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/',function(req,res){
 
