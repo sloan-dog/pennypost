@@ -53,16 +53,9 @@ router.get('/photos', function (req, res){
     // }
     if(err) {
       res.send(err)
-    } else if (!nextPage) {
-      res.send(medias);
-      // prepare nextPage for loading next set of images
-      nextPage = pagination;
     } else {
-      if (nextPage && nextPage.next) {
-        // console.log('this is running',pagination.next)
-        nextPage.next(hdl);
-        nextPage = null;
-      }
+      res.send(medias);
+      console.log(pagination,pagination.next,remaining,limit);
     }
   };
 
