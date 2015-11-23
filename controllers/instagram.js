@@ -4,6 +4,7 @@ var instaApi = require('instagram-node').instagram();
 var cookieParser = require('cookie-parser');
 
 var page = 0;
+var photos = null;
 
 router.use(cookieParser());
 
@@ -46,21 +47,20 @@ var nextPage = null;
 
 router.get('/photos', function (req, res){
   var hdl = function(err, medias, pagination, remaining, limit) {
-    // to account for local url description in router vs external add instagram to comparison
-    // if (req.originalUrl != '/instagram' + req.url) {
-    //   console.log(req.originalUrl,req.url);
-      // nextPage = null;
-    // }
+    // photos+=medias
+    // console.log(photos);
     if(err) {
       res.send(err)
-    } else {
-
+    } else if (!nextPage) {
       res.send(medias);
-      console.log(pagination,pagination.next,remaining,limit);
-      nextPage.next(hdl);
-      // let the server know we're sending medias
-      nextPage = null;
-
+      // prepare nextPage for loading next set of images
+      nextPage = pagination;
+    } else {
+      if (nextPage && nextPage.next) {
+        // console.log('this is running',pagination.next)
+        nextPage.next(hdl);
+        nextPage = null;
+      }
     }
   };
 
